@@ -1,0 +1,71 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: MyApp(),
+  ));
+}
+
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final textstyle = Theme.of(context).textTheme.headlineMedium;
+    return Scaffold(
+      appBar: NewGradientAppBar(
+        title: Text("Gradient AppBar"),
+        gradient: LinearGradient(colors: [Colors.indigo, Colors.cyan]),
+      ),
+      body: ListView(children: [
+        Container(
+          height: 300,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.red, Colors.blue, Colors.teal],
+            ),
+          ),
+          child: Text(
+            "Linear Gradient",
+            style: textstyle,
+          ),
+        ),
+        Divider(),
+        Container(
+          height: 300,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              radius: 0.7,
+              colors: [Colors.redAccent, Colors.black],
+            ),
+          ),
+          child: Text(
+            "Radial Gradient",
+            style: textstyle,
+          ),
+        ),
+        Divider(),
+        Container(
+          height: 300,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: SweepGradient(
+              startAngle: pi / 6,
+              endAngle: pi * 1.8,
+              colors: [Colors.blue, Colors.yellow, Colors.red],
+            ),
+          ),
+          child: Text("SweepGradient", style: textstyle),
+        ),
+        Divider(),
+      ]),
+    );
+  }
+}
